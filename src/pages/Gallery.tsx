@@ -235,7 +235,7 @@ export default function Gallery() {
             animate="visible"
             exit="exit"
             onClick={() => setSelectedImage(null)}
-            className="fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 cursor-zoom-out"
+            className="fixed inset-0 bg-black/95 backdrop-blur-xl z-50 flex items-center justify-center p-4 md:p-8 cursor-zoom-out"
           >
             <motion.div
               variants={modalVariants}
@@ -243,13 +243,12 @@ export default function Gallery() {
               animate="visible"
               exit="exit"
               onClick={(e) => e.stopPropagation()}
-              className="relative max-w-6xl max-h-[90vh] w-full cursor-default"
+              className="relative w-full h-full max-w-[95vw] max-h-[95vh] flex items-center justify-center cursor-default"
             >
               <motion.img
                 src={selectedImage}
                 alt="Gallery Full View"
-                className="w-full h-full object-contain rounded-2xl shadow-2xl"
-                layoutId={selectedImage}
+                className="max-w-full max-h-full w-auto h-auto object-contain rounded-3xl shadow-2xl shadow-black/50"
               />
               <motion.button
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -259,7 +258,7 @@ export default function Gallery() {
                 whileHover={{ scale: 1.1, rotate: 90 }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => setSelectedImage(null)}
-                className="absolute -top-4 -right-4 md:top-4 md:right-4 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-2xl shadow-black/30 hover:bg-red-500 hover:text-white transition-colors duration-300 z-10"
+                className="absolute top-2 right-2 md:top-6 md:right-6 w-14 h-14 bg-white rounded-full flex items-center justify-center shadow-2xl shadow-black/50 hover:bg-red-500 hover:text-white transition-colors duration-300 z-10"
               >
                 <X className="h-7 w-7" />
               </motion.button>
