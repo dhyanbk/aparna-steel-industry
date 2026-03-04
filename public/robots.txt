@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://aparnasteelindustries.in/sitemap.xml
