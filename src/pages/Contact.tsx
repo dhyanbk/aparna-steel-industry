@@ -37,8 +37,8 @@ export default function Contact() {
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }
+    hidden: { opacity: 0, y: 16 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.16, 1, 0.3, 1] } }
   };
 
   return (
@@ -64,8 +64,8 @@ export default function Contact() {
                 <h2 className="text-xl font-bold mb-8 text-slate-900 uppercase tracking-wider">Direct Channels</h2>
                 <div className="space-y-6">
                   <motion.div 
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ x: 3 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="flex items-start space-x-4 group cursor-pointer"
                   >
                     <div className="p-3 bg-blue-50 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
@@ -78,8 +78,8 @@ export default function Contact() {
                     </div>
                   </motion.div>
                   <motion.div 
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ x: 3 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="flex items-start space-x-4 group cursor-pointer"
                   >
                     <div className="p-3 bg-blue-50 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
@@ -91,8 +91,8 @@ export default function Contact() {
                     </div>
                   </motion.div>
                   <motion.div 
-                    whileHover={{ x: 5 }}
-                    transition={{ type: "spring", stiffness: 300 }}
+                    whileHover={{ x: 3 }}
+                    transition={{ type: "spring", stiffness: 300, damping: 20 }}
                     className="flex items-start space-x-4 group cursor-pointer"
                   >
                     <div className="p-3 bg-blue-50 rounded-2xl text-blue-600 group-hover:bg-blue-600 group-hover:text-white transition-all duration-300">
@@ -110,8 +110,8 @@ export default function Contact() {
                   href="https://maps.app.goo.gl/BbwnifMRmwkVbPBz9"
                   target="_blank"
                   rel="noopener noreferrer"
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
+                  whileHover={{ scale: 1.01 }}
+                  whileTap={{ scale: 0.99 }}
                   className="mt-8 flex items-center justify-center space-x-3 w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 px-6 rounded-2xl font-bold uppercase tracking-widest text-sm shadow-lg shadow-blue-500/30 hover:shadow-xl hover:shadow-blue-500/40 transition-all duration-300"
                 >
                   <MapPin className="h-5 w-5" />
@@ -121,8 +121,8 @@ export default function Contact() {
               </div>
 
               <motion.div 
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300 }}
+                whileHover={{ scale: 1.01 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="bg-slate-900 p-8 rounded-3xl text-white shadow-2xl"
               >
                 <div className="flex items-center space-x-3 mb-6">

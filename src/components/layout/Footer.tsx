@@ -9,9 +9,10 @@ export default function Footer() {
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-20">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex flex-col mb-6">
               <span className="text-2xl font-black tracking-tight text-white leading-none">APARNA STEEL</span>
@@ -23,9 +24,10 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <h3 className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-8">Contact Information</h3>
             <div className="space-y-4">
@@ -64,20 +66,21 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           >
             <h3 className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-8">Navigation</h3>
             <ul className="space-y-4">
-              {['Products', 'About Us', 'Contact', 'Gallery'].map((link) => (
-                <li key={link}>
+              {[{label: 'Products', path: '/products'}, {label: 'About Us', path: '/about'}, {label: 'Contact', path: '/contact'}, {label: 'Gallery', path: '/gallery'}].map((link) => (
+                <li key={link.label}>
                   <Link 
-                    to={`/${link.toLowerCase().replace(' ', '')}`} 
+                    to={link.path} 
                     className="text-slate-400 hover:text-white transition-all flex items-center group"
                   >
                     <div className="w-0 group-hover:w-4 h-[1px] bg-blue-500 transition-all mr-0 group-hover:mr-2" />
-                    {link}
+                    {link.label}
                   </Link>
                 </li>
               ))}
@@ -85,9 +88,10 @@ export default function Footer() {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.3 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
             <h3 className="text-sm font-bold uppercase tracking-widest text-blue-500 mb-8">Digital Presence</h3>
             <div className="flex space-x-4">

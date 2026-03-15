@@ -13,10 +13,10 @@ export default function Home() {
       <section className="py-24 bg-slate-50 relative">
         <div className="container mx-auto px-4">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             className="max-w-4xl mx-auto text-center mb-20"
           >
             <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block">Our Premium Products</span>
@@ -30,10 +30,10 @@ export default function Home() {
             {products.slice(0, 6).map((product, index) => (
               <motion.div
                 key={product.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
+                transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
               >
                 <ProductCard {...product} />
               </motion.div>
@@ -41,14 +41,15 @@ export default function Home() {
           </div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
+            initial={{ opacity: 0, scale: 0.97 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="mt-20 text-center"
           >
             <a
               href="/products"
-              className="inline-flex items-center space-x-3 bg-[#0b1120] hover:bg-[#1a2333] text-white px-10 py-5 rounded-[2rem] text-xl font-bold transition-all shadow-xl shadow-slate-900/10 uppercase tracking-widest"
+              className="inline-flex items-center space-x-3 bg-[#0b1120] hover:bg-[#1a2333] text-white px-10 py-5 rounded-[2rem] text-xl font-bold transition-all duration-300 shadow-xl shadow-slate-900/10 uppercase tracking-widest hover:shadow-2xl hover:-translate-y-0.5"
             >
               <span>View Full Catalog</span>
             </a>
@@ -56,11 +57,17 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Fabrication Section Based on User Request */}
+      {/* Fabrication Section */}
       <section className="py-24 bg-white relative overflow-hidden">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
+            <motion.div
+              className="lg:w-1/2"
+              initial={{ opacity: 0, x: -24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            >
               <span className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block">Custom Designs</span>
               <h2 className="text-4xl md:text-5xl font-black mb-8 text-slate-900 tracking-tight">
                 Aparna Steel Industries <br />
@@ -85,9 +92,15 @@ export default function Home() {
                   </div>
                 ))}
               </div>
-            </div>
+            </motion.div>
             
-            <div className="lg:w-1/2 grid grid-cols-2 gap-6">
+            <motion.div
+              className="lg:w-1/2 grid grid-cols-2 gap-6"
+              initial={{ opacity: 0, x: 24 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            >
               {[
                 { title: "Custom Steel Fabrications", list: ["Custom metal fabrication", "Structural steel work", "Precision welding", "Metal cutting and forming", "Industrial equipment"] },
                 { title: "Professional Roofing Solutions", list: ["Premium quality materials", "Custom design", "Industrial and residential", "Maintenance and repairs", "Weather-resistant"] }
@@ -104,7 +117,7 @@ export default function Home() {
                   </ul>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

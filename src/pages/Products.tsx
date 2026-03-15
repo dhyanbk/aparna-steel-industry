@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Search, Filter, CheckCircle2, Box, Home as HomeIcon } from 'lucide-react';
 import { products } from '../data/products';
@@ -17,22 +17,22 @@ export default function Products() {
       <div className="container mx-auto px-4">
         {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-6xl mx-auto mb-24 text-center"
         >
           <span className="text-blue-600 font-bold tracking-[0.2em] uppercase text-sm mb-4 block">Industrial Solutions</span>
           <h1 className="text-5xl md:text-7xl font-black mb-10 text-slate-900 uppercase tracking-tight leading-none">Product Catalog</h1>
           
           <div className="relative max-w-3xl mx-auto group">
-            <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur opacity-20 group-hover:opacity-40 transition duration-1000 group-hover:duration-200"></div>
+            <div className="absolute -inset-1.5 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-[2rem] blur opacity-15 group-hover:opacity-30 transition-opacity duration-500"></div>
             <div className="relative">
               <Search className="absolute left-7 top-1/2 transform -translate-y-1/2 text-slate-400 h-6 w-6" />
               <input
                 type="text"
                 placeholder="Search by machine name or keyword..."
-                className="w-full pl-16 pr-8 py-7 bg-white border-2 border-slate-100 rounded-[2rem] shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 text-xl transition-all placeholder:text-slate-400 text-slate-900 font-medium"
+                className="w-full pl-16 pr-8 py-7 bg-white border-2 border-slate-100 rounded-[2rem] shadow-2xl focus:outline-none focus:ring-4 focus:ring-blue-500/10 text-xl transition-all duration-300 placeholder:text-slate-400 text-slate-900 font-medium"
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
               />
@@ -53,9 +53,9 @@ export default function Products() {
               {filteredProducts.map((product, index) => (
                 <motion.div
                   key={product.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 24 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  transition={{ duration: 0.5, delay: index * 0.08, ease: [0.16, 1, 0.3, 1] }}
                 >
                   <ProductCard {...product} />
                 </motion.div>
@@ -63,24 +63,35 @@ export default function Products() {
             </div>
           </>
         ) : (
-          <div className="text-center py-32 bg-white rounded-[4rem] border-4 border-dashed border-slate-100 shadow-2xl shadow-slate-200/50 mb-32">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="text-center py-32 bg-white rounded-[4rem] border-4 border-dashed border-slate-100 shadow-2xl shadow-slate-200/50 mb-32"
+          >
             <div className="bg-slate-50 w-24 h-24 rounded-full flex items-center justify-center mx-auto mb-8">
               <Search className="h-10 w-10 text-slate-300" />
             </div>
             <p className="text-slate-900 text-3xl font-black uppercase tracking-tight mb-4">No results found</p>
             <p className="text-slate-400 text-lg max-w-md mx-auto">We couldn't find any results for "{searchTerm}". Please try a different search term.</p>
-          </div>
+          </motion.div>
         )}
 
-        {/* Fabrication & Roofing Section (New Content) */}
-        <section className="bg-[#0b1120] rounded-[3rem] overflow-hidden shadow-2xl text-white">
+        {/* Fabrication & Roofing Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+          className="bg-[#0b1120] rounded-[3rem] overflow-hidden shadow-2xl text-white"
+        >
           <div className="p-10 md:p-20">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
               <div>
                 <span className="text-blue-500 font-bold uppercase tracking-widest text-sm mb-4 block">Aparna Steel Industries</span>
                 <h2 className="text-5xl md:text-6xl font-black mb-8 leading-tight tracking-tight">
                   Precision in Iron & <br />
-                  <span className="text-blue-500 text-shadow-glow">Steel Fabrication!</span>
+                  <span className="text-blue-500">Steel Fabrication!</span>
                 </h2>
                 <p className="text-xl text-slate-400 mb-12 leading-relaxed max-w-xl">
                   Looking for top-quality iron and steel fabrication at reasonable prices? We've got you covered with custom designs and precision engineering.
@@ -93,7 +104,7 @@ export default function Products() {
                     "Durable & Precision-Engineered",
                     "Affordable & Reliable Solutions"
                   ].map((item) => (
-                    <div key={item} className="flex items-center space-x-3 bg-white/5 p-4 rounded-xl border border-white/10">
+                    <div key={item} className="flex items-center space-x-3 bg-white/5 p-4 rounded-xl border border-white/10 transition-colors duration-300 hover:bg-white/10">
                       <CheckCircle2 className="h-5 w-5 text-blue-500" />
                       <span className="text-sm font-bold uppercase tracking-wide">{item}</span>
                     </div>
@@ -104,8 +115,9 @@ export default function Products() {
               <div className="space-y-8">
                 {/* Custom Steel Card */}
                 <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4 mb-6 text-blue-500">
                     <Box className="h-8 w-8" />
@@ -129,8 +141,9 @@ export default function Products() {
 
                 {/* Professional Roofing Card */}
                 <motion.div 
-                  whileHover={{ scale: 1.02 }}
-                  className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all"
+                  whileHover={{ scale: 1.01 }}
+                  transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                  className="bg-white/5 border border-white/10 p-8 rounded-[2rem] hover:bg-white/10 transition-all duration-300"
                 >
                   <div className="flex items-center space-x-4 mb-6 text-blue-500">
                     <HomeIcon className="h-8 w-8" />
@@ -154,7 +167,7 @@ export default function Products() {
               </div>
             </div>
           </div>
-        </section>
+        </motion.section>
 
         {/* Roofing Visuals */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-10 mb-20">
@@ -171,14 +184,18 @@ export default function Products() {
               image: "https://raw.githubusercontent.com/dhyanbk/web-assets/main/troofing.jpg",
               desc: "Premium traditional roofing installation showcasing classic designs."
             }
-          ].map((project) => (
+          ].map((project, index) => (
             <motion.div 
               key={project.title}
-              whileHover={{ y: -10 }}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6 }}
               className="bg-white rounded-[2.5rem] overflow-hidden shadow-2xl border border-slate-100 group"
             >
               <div className="relative h-72 overflow-hidden">
-                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
+                <img src={project.image} alt={project.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" />
                 <div className="absolute top-6 left-6 bg-blue-600 text-white text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg">
                   {project.tag}
                 </div>

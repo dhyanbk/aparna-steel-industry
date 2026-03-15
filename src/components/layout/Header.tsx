@@ -1,10 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setIsScrolled(window.scrollY > 10);
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const navItems = [
     { path: '/', label: 'Home' },
@@ -15,20 +22,24 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-white/80 backdrop-blur-md border-b border-gray-100 text-gray-900 sticky top-0 z-50">
+    <header
+      className={`bg-white/80 backdrop-blur-md border-b border-gray-100 text-gray-900 sticky top-0 z-50 transition-shadow duration-300 ${
+        isScrolled ? 'header-scrolled' : ''
+      }`}
+    >
       <div className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
-          <motion.div 
+          <motion.div
             className="flex items-center space-x-3"
-            initial={{ opacity: 0, x: -20 }}
+            initial={{ opacity: 0, x: -12 }}
             animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.5 }}
+            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="relative group overflow-hidden rounded-lg">
-              <img 
-                src="https://raw.githubusercontent.com/dhyanbk/web-assets/main/logo.jpg" 
-                alt="Aparna Steel Industry Logo" 
-                className="h-10 w-10 object-contain transition-transform group-hover:scale-110"
+              <img
+                src="https://raw.githubusercontent.com/dhyanbk/web-assets/main/logo.jpg"
+                alt="Aparna Steel Industry Logo"
+                className="h-10 w-10 object-contain transition-transform duration-300 group-hover:scale-105"
               />
             </div>
             <div className="flex flex-col">
@@ -39,16 +50,22 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center justify-end space-x-10">
-            {navItems.map((item) => (
-              <NavLink
+            {navItems.map((item, i) => (
+              <motion.div
                 key={item.path}
-                to={item.path}
-                className={({ isActive }) =>
-                  `text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:transform after:scale-x-0 after:transition-transform hover:after:scale-x-100 ${isActive ? 'text-blue-600 after:scale-x-100' : 'text-slate-600 hover:text-slate-900'}`
-                }
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.1 + i * 0.05, ease: [0.16, 1, 0.3, 1] }}
               >
-                {item.label}
-              </NavLink>
+                <NavLink
+                  to={item.path}
+                  className={({ isActive }) =>
+                    `text-sm font-semibold tracking-wide uppercase transition-all duration-300 relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-blue-600 after:transform after:scale-x-0 after:transition-transform after:duration-300 hover:after:scale-x-100 ${isActive ? 'text-blue-600 after:scale-x-100' : 'text-slate-600 hover:text-slate-900'}`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              </motion.div>
             ))}
           </nav>
 
@@ -62,31 +79,39 @@ export default function Header() {
           </button>
         </div>
 
-        {/* Mobile Menu */}
-        {isMenuOpen && (
-          <motion.div
-            className="md:hidden mt-4 pb-6 bg-white border-t border-slate-100"
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            <nav className="flex flex-col space-y-1 mt-4">
-              {navItems.map((item) => (
-                <NavLink
-                  key={item.path}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `px-4 py-3 text-base font-bold transition-all rounded-lg ${isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`
-                  }
-                  onClick={() => setIsMenuOpen(false)}
-                >
-                  {item.label}
-                </NavLink>
-              ))}
-            </nav>
-          </motion.div>
-        )}
+        {/* Mobile Menu with proper AnimatePresence exit */}
+        <AnimatePresence>
+          {isMenuOpen && (
+            <motion.div
+              className="md:hidden mt-4 pb-6 bg-white border-t border-slate-100 overflow-hidden"
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: 'auto' }}
+              exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <nav className="flex flex-col space-y-1 mt-4">
+                {navItems.map((item, i) => (
+                  <motion.div
+                    key={item.path}
+                    initial={{ opacity: 0, x: -12 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.3, delay: i * 0.04 }}
+                  >
+                    <NavLink
+                      to={item.path}
+                      className={({ isActive }) =>
+                        `px-4 py-3 text-base font-bold transition-all duration-200 rounded-lg block ${isActive ? 'bg-blue-50 text-blue-600' : 'text-slate-600 hover:bg-slate-50'}`
+                      }
+                      onClick={() => setIsMenuOpen(false)}
+                    >
+                      {item.label}
+                    </NavLink>
+                  </motion.div>
+                ))}
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </header>
   );

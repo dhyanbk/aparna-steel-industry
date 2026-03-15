@@ -7,7 +7,7 @@ export default function About() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-5xl mx-auto"
         >
           <div className="text-center mb-16">
@@ -17,14 +17,15 @@ export default function About() {
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-24">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
+              initial={{ opacity: 0, x: -24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
             >
               <div className="relative">
                 <div className="absolute -inset-4 bg-blue-100/50 rounded-3xl -z-10 transform rotate-3" />
                 <img
-                  src="/assets/shop-photo.jpg"
+                  src="https://raw.githubusercontent.com/dhyanbk/web-assets/main/shop-photo.jpeg"
                   alt="Aparna Steel Industries Facility"
                   className="rounded-3xl shadow-2xl w-full object-cover h-[500px]"
                 />
@@ -32,9 +33,10 @@ export default function About() {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, x: 30 }}
+              initial={{ opacity: 0, x: 24 }}
               whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
             >
               <h2 className="text-3xl font-bold mb-6 text-slate-900">Empowering Modern Agriculture</h2>
               <div className="space-y-6 text-slate-600 text-lg leading-relaxed">
@@ -61,7 +63,13 @@ export default function About() {
             </motion.div>
           </div>
 
-          <div className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-white relative overflow-hidden">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="bg-slate-900 rounded-[3rem] p-12 md:p-20 text-white relative overflow-hidden"
+          >
             <div className="absolute top-0 right-0 w-64 h-64 bg-blue-600/20 blur-[100px]" />
             <div className="relative z-10 grid grid-cols-1 md:grid-cols-2 gap-16">
               <div>
@@ -90,7 +98,7 @@ export default function About() {
                 </ul>
               </div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </div>
     </div>

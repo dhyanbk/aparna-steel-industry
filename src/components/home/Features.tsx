@@ -37,17 +37,17 @@ export default function Features() {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.2 }
+      transition: { staggerChildren: 0.1, delayChildren: 0.15 }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    hidden: { opacity: 0, y: 30, scale: 0.97 },
     visible: { 
       opacity: 1, 
       y: 0, 
       scale: 1,
-      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] }
+      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] }
     }
   };
 
@@ -55,41 +55,41 @@ export default function Features() {
     <section className="py-24 bg-white relative overflow-hidden">
       {/* Background decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-indigo-100 rounded-full mix-blend-multiply filter blur-3xl opacity-20" />
       </div>
 
       <div className="container mx-auto px-4 relative">
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+          transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
           className="max-w-4xl mx-auto text-center mb-20"
         >
           <motion.span 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
+            transition={{ delay: 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-blue-600 font-bold uppercase tracking-widest text-sm mb-4 block"
           >
             Reliability & Innovation
           </motion.span>
           <motion.h2 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
+            transition={{ delay: 0.15, duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="text-4xl md:text-5xl font-black mb-8 text-slate-900 tracking-tight"
           >
             Why Partner with Aparna Steel
           </motion.h2>
           <motion.p 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 12 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+            transition={{ delay: 0.2, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto"
           >
             We deliver more than just machinery. We provide end-to-end industrial solutions built with high-grade materials and precision engineering.
@@ -107,12 +107,13 @@ export default function Features() {
             <motion.div
               key={feature.title}
               variants={itemVariants}
-              whileHover={{ y: -12, scale: 1.02 }}
+              whileHover={{ y: -8, scale: 1.01 }}
+              transition={{ type: "spring", stiffness: 300, damping: 20 }}
               className="group p-10 bg-white rounded-[2rem] border border-slate-100 shadow-2xl shadow-slate-200/50 hover:border-blue-500 hover:shadow-blue-500/20 transition-all duration-500 cursor-pointer"
             >
               <motion.div 
-                whileHover={{ rotate: [0, -10, 10, 0], scale: 1.1 }}
-                transition={{ duration: 0.5 }}
+                whileHover={{ rotate: [0, -5, 5, 0], scale: 1.05 }}
+                transition={{ duration: 0.4 }}
                 className={`w-14 h-14 ${feature.color} ${feature.hoverColor} flex items-center justify-center rounded-2xl mb-8 transition-all duration-300`}
               >
                 <feature.icon className="h-7 w-7" />
@@ -123,13 +124,14 @@ export default function Features() {
               </p>
               <motion.a 
                 href="/contact" 
-                whileHover={{ x: 5 }}
+                whileHover={{ x: 3 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
                 className="inline-flex items-center text-xs font-bold text-blue-600 uppercase tracking-widest"
               >
                 Learn More 
                 <motion.span
-                  animate={{ x: [0, 3, 0] }}
-                  transition={{ repeat: Infinity, duration: 1.5 }}
+                  animate={{ x: [0, 2, 0] }}
+                  transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
                 >
                   <ArrowRight className="h-4 w-4 ml-1" />
                 </motion.span>
